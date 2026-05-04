@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aralone Network | CS 1.6 Clan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at center, #020617, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* arka plan animasyon */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(56,189,248,0.03) 0px,
+        rgba(56,189,248,0.03) 2px,
+        transparent 2px,
+        transparent 25px
+    );
+    animation: moveBg 25s linear infinite;
+}
+
+@keyframes moveBg {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-300px, -300px); }
+}
+
+.container {
+    text-align: center;
+    z-index: 2;
+}
+
+/* LOGO */
+.logo {
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px #38bdf8;
+}
+
+/* ALT YAZI */
+.subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #94a3b8;
+    font-weight: 300;
+}
+
+/* BİLGİ */
+.info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.info span {
+    color: #38bdf8;
+    font-weight: 500;
+}
+
+/* COUNTDOWN */
+.countdown {
+    margin-top: 35px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.box {
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(56,189,248,0.15);
+    background: rgba(0,0,0,0.4);
+    min-width: 85px;
+}
+
+.box span {
+    font-size: 28px;
+    display: block;
+    text-shadow: 0 0 10px #38bdf8;
+    font-weight: 500;
+}
+
+.label {
+    font-size: 11px;
+    color: #64748b;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/* INSTAGRAM */
+.social {
+    margin-top: 30px;
+}
+
+.instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    color: white;
+    background: linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
+    box-shadow: 0 0 15px rgba(255,0,150,0.5);
+    transition: 0.3s;
+}
+
+.instagram-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,0,150,0.8);
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #475569;
+    font-weight: 300;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">ARALONE</div>
+
+    <div class="subtitle">
+        COUNTER-STRIKE 1.6 CLAN
+    </div>
+
+    <div class="info">
+        Açılış: <span>1 Ağustos 2026</span><br>
+        Kurucu: <span>xPantik & Şeker</span>
+    </div>
+
+    <div class="countdown">
+        <div class="box"><span id="days">0</span><div class="label">Gün</div></div>
+        <div class="box"><span id="hours">0</span><div class="label">Saat</div></div>
+        <div class="box"><span id="minutes">0</span><div class="label">Dakika</div></div>
+        <div class="box"><span id="seconds">0</span><div class="label">Saniye</div></div>
+    </div>
+
+    <div class="social">
+        <a href="https://instagram.com/xpantikbey" target="_blank" class="instagram-btn">
+            📸 @xpantikbey
+        </a>
+    </div>
+
+    <div class="footer">
+        ARALONE NETWORK © 2026
+    </div>
+
+</div>
+
+<script>
+const targetDate = new Date("August 1, 2026 00:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        document.querySelector(".countdown").innerHTML = "SİSTEM AKTİF";
+        return;
+    }
+
+    document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
+    document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
+    document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
